@@ -6,3 +6,16 @@
    margin: 0;
    font-weight: bold;
 }
+
+button {
+   margin-left: 5px;
+}
+
+.centralizar {
+   margin-top: 50px;
+   margin-left: 10px;
+}
+
+table#tabela {
+   
+}
