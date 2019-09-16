@@ -15,7 +15,7 @@ class Node {
 }
 
 let insert = function(tree, valor) {
-    if (!tree.hasOwnProperty('valor')) { //Se não tiver o 'valor', insere ele na raiz
+    if (!tree.hasOwnProperty('valor')) { //Se 'valor' estiver vazio, insere ele na raiz
       return tree.setValue(valor);
     }
     else {
@@ -43,6 +43,9 @@ let insert = function(tree, valor) {
 }
 
 let searchElemento = function(tree, valor) {
+    if (tree == undefined) {
+        return "Elemento não encontrado."
+    }
     if (!tree.valor || tree.valor === valor ) {
         return tree.valor     
     }
@@ -52,14 +55,15 @@ let searchElemento = function(tree, valor) {
         return searchElemento(tree.treeRight, valor)  
 }
 
+let remove = function(tree, valor) {
+    if(tree == undefined) {
+        return "Erro"
+    }
+    let no = searchElemento(tree, valor);
+}
+
 let deleteElemento = function(tree, valor) {
-    if (tree == null) {
-        return "Árvore Vazia"
-    }
-    if (valor < tree.valor) {
-        tree.treeLeft = splice(tree.treeLeft, valor);
-    }
-    tree.treeRight = splice(tree.treeRight, valor);
+    if(tree == undefined)
 }
 
 let tree = new Node();
@@ -70,7 +74,7 @@ insert(tree, 1);
 insert(tree, 6);
 
 console.log(tree);
-console.log("Elemento de busca encontrado: " + searchElemento(tree, 6));
-console.log("Elemento deletado:" + deleteElemento(tree, 5));
-console.log(tree);
+console.log("Elemento de busca: " + searchElemento(tree, 6));
+console.log("Elemento deletado: " + deleteElemento(tree, 5));
+//console.log(tree);
 
