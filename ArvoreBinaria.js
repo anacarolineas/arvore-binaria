@@ -43,8 +43,8 @@ let insert = function(tree, valor) {
 }
 
 let searchElemento = function(tree, valor) {
-    if (tree == undefined) {
-        return "Elemento não encontrado."
+    if(tree == undefined){
+        return "Elemento não encontrado"
     }
     if (!tree.valor || tree.valor === valor ) {
         return tree.valor     
@@ -62,8 +62,41 @@ let remove = function(tree, valor) {
     let no = searchElemento(tree, valor);
 } */
 
+let searchElementoParaExcluir = function(tree, valor, pai = undefined) {
+    if(tree == undefined){
+        return "Elemento não encontrado"
+    }
+    if (!tree.valor || tree.valor === valor ) {
+        return {
+            pai:pai,
+            self: tree,
+        }    
+    }
+    if (valor < tree.valor) {
+        return searchElementoParaExcluir(tree.treeLeft, valor, tree)
+    }
+        return searchElementoParaExcluir(tree.treeRight, valor, tree)  
+}
+
 let deleteElemento = function(tree, valor) {
-    return valor
+    if (tree == null) {
+        return "Árvore Vazia"
+    }
+
+    //busca no
+    let no_excluir = searchElementoParaExcluir(tree, valor);
+
+    
+    // verifica se é uma folha
+    if(no_excluir.self.treeLeft == undefined && no_excluir.self.treeLeft == undefined){
+        
+        // ve se o filho esta na direita ou esquerda
+        if(no_excluir.pai.treeLeft === no_excluir.self){
+            no_excluir.pai.treeLeft = undefined;
+        }else{
+            no_excluir.pai.treeRight = undefined;
+        }
+    }
 }
 
 let tree = new Node();
@@ -72,9 +105,10 @@ insert(tree, 20);
 insert(tree, 5);
 insert(tree, 1);
 insert(tree, 6);
+// deleteElemento(tree, 6);
 
 console.log(tree);
-console.log("Elemento de busca: " + searchElemento(tree, 2));
-console.log("Elemento deletado: " + deleteElemento(tree, 1));
-//console.log(tree);
+// console.log("Elemento de busca encontrado: " + searchElemento(tree, 6));
+console.log("Elemento deletado:" + deleteElemento(tree, 6));
+console.log(tree);
 
