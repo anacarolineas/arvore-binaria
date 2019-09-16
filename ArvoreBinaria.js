@@ -54,16 +54,16 @@ let searchElemento = function(tree, valor) {
     }
         return searchElemento(tree.treeRight, valor)  
 }
-
+/*
 let remove = function(tree, valor) {
     if(tree == undefined) {
         return "Erro"
     }
     let no = searchElemento(tree, valor);
-}
+} */
 
 let deleteElemento = function(tree, valor) {
-    if(tree == undefined)
+    return valor
 }
 
 let tree = new Node();
@@ -74,7 +74,7 @@ insert(tree, 1);
 insert(tree, 6);
 
 console.log(tree);
-console.log("Elemento de busca: " + searchElemento(tree, 6));
-console.log("Elemento deletado: " + deleteElemento(tree, 5));
+console.log("Elemento de busca: " + searchElemento(tree, 2));
+console.log("Elemento deletado: " + deleteElemento(tree, 1));
 //console.log(tree);
 
